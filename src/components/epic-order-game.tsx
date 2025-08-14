@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useSensor, useSensors, PointerSensor } from "@dnd-kit/core";
+import { useSensor, useSensors, PointerSensor, DragEndEvent } from "@dnd-kit/core";
 import { Settings } from "../types/game";
 import { useGameLogic } from "../hooks/useGameLogic";
 import { SetupScreen } from "./SetupScreen";
@@ -37,7 +37,6 @@ export default function EpicOrderGame() {
     allPlaced,
     singleScore,
     perfectScore,
-    idToCard,
     startGame,
     onDragEnd,
     finishSinglePlayer,
@@ -48,7 +47,7 @@ export default function EpicOrderGame() {
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
   // Wrapper for onDragEnd to handle toast messages
-  const handleDragEnd = (e: any) => {
+  const handleDragEnd = (e: DragEndEvent) => {
     const result = onDragEnd(e);
     if (result?.error) {
       setToastMsg(result.error);

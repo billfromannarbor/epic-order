@@ -18,7 +18,7 @@ export async function fetchGameData(settings: Settings): Promise<{ timelines: Ti
                 return { timelines: data.timelines, events: data.events };
             }
         }
-    } catch (e) {
+    } catch {
         // fall through to mock
     }
 

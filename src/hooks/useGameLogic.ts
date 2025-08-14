@@ -165,7 +165,6 @@ export function useGameLogic(settings: Settings) {
     const card = events.find((e) => e.id === itemId)!;
     if (card.timelineId !== timelineId) return { correct: false, reason: "red" };
     // Check order relative to already placed in this timeline
-    const tlCards = (board[timelineId] ?? []).map((id) => events.find((e) => e.id === id)!).sort(byDateAsc);
     // After insertion, the placed set becomes:
     const placedAfter = [...(board[timelineId] ?? [])];
     placedAfter.splice(insertIndex, 0, itemId);
@@ -193,7 +192,7 @@ export function useGameLogic(settings: Settings) {
     // Determine destination container & index
     const allContainers = ["stockpile", ...timelines.map((t) => t.id)];
     const overIsContainer = allContainers.includes(overId);
-    let destContainer = overIsContainer ? overId : findContainerOf(overId);
+    const destContainer = overIsContainer ? overId : findContainerOf(overId);
     if (!destContainer) return;
 
     const fromIndex = containerIndexOf(fromContainer, activeId);

@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { DragEndEvent, DndContext, useDroppable } from "@dnd-kit/core";
+import { DragEndEvent, DndContext, useDroppable, useSensors } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
 import { motion, AnimatePresence } from "framer-motion";
 import { Timeline, EventCardData, MarkStatus, FlashStatus, ID } from "../types/game";
@@ -13,7 +13,7 @@ interface GameScreenProps {
     onDragEnd: (e: DragEndEvent) => void;
     marks: Record<ID, MarkStatus>;
     flash: Record<ID, FlashStatus>;
-    sensors: any;
+    sensors: ReturnType<typeof useSensors>;
     perTimelineLimit: number;
     readyText: string | null;
     numberOfPlayers: number;

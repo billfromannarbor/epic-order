@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Settings, TOPICS } from "../types/game";
+import { Settings, TOPICS, PlayerAge, Topic } from "../types/game";
 import { DirectionsCard } from "./DirectionsCard";
 import { DemoAnimation } from "./DemoAnimation";
 
@@ -44,7 +44,7 @@ export function SetupScreen({ settings, setSettings, onStart }: SetupScreenProps
                     <label className="font-semibold">Which best describes the youngest player?</label>
                     <select
                         value={settings.youngestPlayer}
-                        onChange={(e) => setSettings((s) => ({ ...s, youngestPlayer: e.target.value as any }))}
+                        onChange={(e) => setSettings((s) => ({ ...s, youngestPlayer: e.target.value as PlayerAge }))}
                         className="max-w-xs rounded-lg border px-3 py-2"
                     >
                         {(["Under 13", "13-17", "18 and older"] as const).map((age) => (
@@ -85,7 +85,7 @@ export function SetupScreen({ settings, setSettings, onStart }: SetupScreenProps
                     <label className="font-semibold">Choose topic</label>
                     <select
                         value={settings.topic}
-                        onChange={(e) => setSettings((s) => ({ ...s, topic: e.target.value as any }))}
+                        onChange={(e) => setSettings((s) => ({ ...s, topic: e.target.value as Topic }))}
                         className="max-w-md rounded-lg border px-3 py-2"
                     >
                         {TOPICS.map((t) => (
