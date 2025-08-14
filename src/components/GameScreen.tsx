@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { DragEndEvent, DndContext } from "@dnd-kit/core";
+import { DragEndEvent, DndContext, useDroppable } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
 import { motion, AnimatePresence } from "framer-motion";
 import { Timeline, EventCardData, MarkStatus, FlashStatus, ID } from "../types/game";
@@ -22,6 +22,61 @@ interface GameScreenProps {
     currentPlayer: number;
     onFinish: () => void;
     allPlaced: boolean;
+}
+
+// Droppable timeline container
+function DroppableTimeline({
+    timeline,
+    children,
+    perTimelineLimit,
+    currentCount
+}: {
+    timeline: Timeline;
+    children: React.ReactNode;
+    perTimelineLimit: number;
+    currentCount: number;
+}) {
+    const { setNodeRef, isOver } = useDroppable({
+        id: timeline.id,
+    });
+
+    return (
+        <div
+            ref={setNodeRef}
+            className={`rounded-2xl border bg-white p-3 shadow-sm transition-colors ${isOver ? 'bg-blue-50 border-blue-300' : ''
+                }`}
+        >
+            <div className="mb-2 flex items-center justify-between">
+                <div className="font-semibold">{timeline.title}</div>
+                <div className="text-xs text-slate-600">
+                    {yearStr(timeline.start)} — {yearStr(timeline.end)}
+                </div>
+            </div>
+            {children}
+            {/* Show capacity info */}
+            <div className="text-xs text-slate-500 mt-2">
+                {currentCount} / {perTimelineLimit} events
+            </div>
+        </div>
+    );
+}
+
+// Droppable stockpile container
+function DroppableStockpile({ children }: { children: React.ReactNode }) {
+    const { setNodeRef, isOver } = useDroppable({
+        id: "stockpile",
+    });
+
+    return (
+        <div
+            ref={setNodeRef}
+            className={`rounded-2xl border bg-white p-3 shadow-sm transition-colors ${isOver ? 'bg-blue-50 border-blue-300' : ''
+                }`}
+        >
+            <div className="mb-2 text-sm font-semibold">Stockpile</div>
+            {children}
+        </div>
+    );
 }
 
 export function GameScreen({
@@ -68,14 +123,12 @@ export function GameScreen({
             <DndContext onDragEnd={onDragEnd} sensors={sensors}>
                 <div className="grid gap-4">
                     {timelines.map((tl) => (
-                        <div key={tl.id} className="rounded-2xl border bg-white p-3 shadow-sm">
-                            <div className="mb-2 flex items-center justify-between">
-                                <div className="font-semibold">{tl.title}</div>
-                                <div className="text-xs text-slate-600">
-                                    {yearStr(tl.start)} — {yearStr(tl.end)}
-                                </div>
-                            </div>
-
+                        <DroppableTimeline
+                            key={tl.id}
+                            timeline={tl}
+                            perTimelineLimit={perTimelineLimit}
+                            currentCount={board[tl.id]?.length ?? 0}
+                        >
                             <SortableContext items={board[tl.id] ?? []}>
                                 <div className="flex min-h-[92px] flex-wrap items-stretch gap-2 rounded-xl border border-dashed bg-slate-50 p-3">
                                     {(board[tl.id] ?? []).map((id) => (
@@ -95,13 +148,12 @@ export function GameScreen({
                                     ))}
                                 </div>
                             </SortableContext>
-                        </div>
+                        </DroppableTimeline>
                     ))}
                 </div>
 
                 {/* Stockpile */}
-                <div className="rounded-2xl border bg-white p-3 shadow-sm">
-                    <div className="mb-2 text-sm font-semibold">Stockpile</div>
+                <DroppableStockpile>
                     <SortableContext items={board.stockpile ?? []}>
                         <div className="flex flex-wrap gap-2 rounded-xl border border-dashed bg-slate-50 p-3">
                             {(board.stockpile ?? []).map((id) => (
@@ -114,7 +166,7 @@ export function GameScreen({
                             ))}
                         </div>
                     </SortableContext>
-                </div>
+                </DroppableStockpile>
             </DndContext>
 
             {/* Controls */}

@@ -203,9 +203,11 @@ export function useGameLogic(settings: Settings) {
     if (overIsContainer) destIndex = (board[destContainer] ?? []).length; // append to container
     if (destIndex < 0) destIndex = (board[destContainer] ?? []).length;
 
-    // Capacity guard for timelines
+    // Capacity guard for timelines - only check when moving between containers
     const droppingToTimeline = destContainer !== "stockpile";
-    if (droppingToTimeline && wouldOverflow(destContainer)) {
+    const isReordering = fromContainer === destContainer;
+
+    if (droppingToTimeline && !isReordering && wouldOverflow(destContainer)) {
       // bounce back with toast-like message
       return { error: "Timeline is full." }; // no state change (auto reverts visually by not committing)
     }
@@ -313,7 +315,7 @@ export function useGameLogic(settings: Settings) {
     singleScore,
     perfectScore,
     idToCard,
-    
+
     // Actions
     startGame,
     onDragEnd,
