@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { DragEndEvent, DndContext, useDroppable, useSensors } from "@dnd-kit/core";
+import React, { useMemo, useState } from "react";
+import { DragEndEvent, DragStartEvent, DndContext, useDroppable, useSensors, DragOverlay } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
 import { motion, AnimatePresence } from "framer-motion";
 import { Timeline, EventCardData, MarkStatus, FlashStatus, ID } from "../types/game";
@@ -97,6 +97,17 @@ export function GameScreen({
     allPlaced,
 }: GameScreenProps) {
     const idToCard = useMemo(() => Object.fromEntries(events.map((e) => [e.id, e])), [events]);
+    const [activeId, setActiveId] = useState<string | null>(null);
+
+    const handleDragStart = (event: DragStartEvent) => {
+        const id = String(event.active.id);
+        setActiveId(id);
+    };
+
+    const handleDragEnd = (event: DragEndEvent) => {
+        setActiveId(null);
+        onDragEnd(event);
+    };
 
     return (
         <div className="grid gap-6">
@@ -120,7 +131,7 @@ export function GameScreen({
             </div>
 
             {/* Timelines */}
-            <DndContext onDragEnd={onDragEnd} sensors={sensors}>
+            <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}>
                 <div className="grid gap-4">
                     {timelines.map((tl) => (
                         <DroppableTimeline
@@ -167,6 +178,20 @@ export function GameScreen({
                         </div>
                     </SortableContext>
                 </DroppableStockpile>
+
+                {/* Drag Overlay */}
+                <DragOverlay>
+                    {activeId ? (
+                        <div
+                            className="w-[120px] rounded-2xl border border-gray-300 bg-white shadow-xl px-3 py-2 text-center text-sm font-semibold transform rotate-3 z-50"
+                            style={{
+                                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                            }}
+                        >
+                            {idToCard[activeId]?.description || 'Unknown card'}
+                        </div>
+                    ) : null}
+                </DragOverlay>
             </DndContext>
 
             {/* Controls */}

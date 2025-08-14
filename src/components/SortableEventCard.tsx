@@ -16,7 +16,7 @@ export function SortableEventCard({ card, mark, flash, disabled }: SortableEvent
     const style: React.CSSProperties = {
         transform: CSS.Translate.toString(transform),
         transition,
-        opacity: isDragging ? 0.8 : 1,
+        opacity: isDragging ? 0.3 : 1,
     };
 
     const borderByStatus: Record<MarkStatus, string> = {
