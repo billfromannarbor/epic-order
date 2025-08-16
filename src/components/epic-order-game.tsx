@@ -93,6 +93,10 @@ export default function EpicOrderGame() {
             perfect={perfectScore}
             onPlayAgain={startGame}
             onBack={resetToSetup}
+            timelines={timelines}
+            events={events}
+            board={board}
+            marks={marks}
           />
         )}
       </div>

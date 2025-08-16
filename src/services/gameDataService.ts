@@ -43,63 +43,63 @@ export async function fetchGameData(settings: Settings): Promise<{ timelines: Ti
         {
             id: "e1",
             description: "Kansas–Neb.",
-            tooltip: "Kansas–Nebraska Act allows territories to decide on slavery (1854).",
+            tooltip: "Kansas–Nebraska Act allows territories to decide on slavery.",
             date: "1854-05-30",
             timelineId: "tl-1",
         },
         {
             id: "e2",
             description: "Dred Scott",
-            tooltip: "Supreme Court's Dred Scott decision (1857).",
+            tooltip: "Supreme Court's Dred Scott decision.",
             date: "1857-03-06",
             timelineId: "tl-1"
         },
         {
             id: "e3",
             description: "Fort Sumter",
-            tooltip: "Civil War begins at Fort Sumter (1861).",
+            tooltip: "Civil War begins at Fort Sumter.",
             date: "1861-04-12",
             timelineId: "tl-1"
         },
         {
             id: "e4",
             description: "Reconstruction",
-            tooltip: "Reconstruction era begins (1865).",
+            tooltip: "Reconstruction era begins.",
             date: "1865-12-01",
             timelineId: "tl-2"
         },
         {
             id: "e5",
             description: "Transcont.",
-            tooltip: "Transcontinental Railroad completed (1869).",
+            tooltip: "Transcontinental Railroad completed.",
             date: "1869-05-10",
             timelineId: "tl-2"
         },
         {
             id: "e6",
             description: "Crazy Horse",
-            tooltip: "Crazy Horse killed while in U.S. custody (1877).",
+            tooltip: "Crazy Horse killed while in U.S. custody.",
             date: "1877-09-05",
             timelineId: "tl-2"
         },
         {
             id: "e7",
             description: "Prohibition",
-            tooltip: "Temperance grows; early state prohibition laws (1880s).",
+            tooltip: "Temperance grows; early state prohibition laws.",
             date: "1881-01-01",
             timelineId: "tl-3"
         },
         {
             id: "e8",
             description: "Statue Lib.",
-            tooltip: "Statue of Liberty dedicated (1886).",
+            tooltip: "Statue of Liberty dedicated.",
             date: "1886-10-28",
             timelineId: "tl-3"
         },
         {
             id: "e9",
             description: "Spanish–Am.",
-            tooltip: "Spanish–American War (1898).",
+            tooltip: "Spanish–American War.",
             date: "1898-04-21",
             timelineId: "tl-3"
         },
@@ -108,8 +108,7 @@ export async function fetchGameData(settings: Settings): Promise<{ timelines: Ti
     const picked = sample
         .sort(() => Math.random() - 0.5)
         .slice(0, total)
-        // force a spread across timelines if fewer timelines selected
-        .map((e, i) => ({ ...e, timelineId: timelines[i % TL_COUNT].id }))
+        // Keep the original timelineId assignments for proper scoring
         .sort(() => Math.random() - 0.5);
 
     return { timelines, events: picked };

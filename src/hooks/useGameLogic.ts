@@ -260,15 +260,31 @@ export function useGameLogic(settings: Settings) {
       const placedIds = board[tl.id] ?? [];
       const placedCards = placedIds.map((id) => idToCard[id]);
       const correctOrder = [...placedCards].sort(byDateAsc).map((c) => c.id);
+
+      console.log(`Timeline ${tl.id} (${tl.title}):`, {
+        timelineId: tl.id,
+        placedCards: placedCards.map(c => ({ id: c.id, description: c.description, timelineId: c.timelineId }))
+      });
+
       placedCards.forEach((card, idx) => {
-        if (card.timelineId !== tl.id) newMarks[card.id] = "red";
-        else if (placedIds[idx] === correctOrder[idx]) newMarks[card.id] = "green";
-        else newMarks[card.id] = "yellow";
+        if (card.timelineId !== tl.id) {
+          console.log(`Card ${card.description} marked RED: card.timelineId=${card.timelineId}, tl.id=${tl.id}`);
+          newMarks[card.id] = "red";
+        }
+        else if (placedIds[idx] === correctOrder[idx]) {
+          console.log(`Card ${card.description} marked GREEN: correct order`);
+          newMarks[card.id] = "green";
+        }
+        else {
+          console.log(`Card ${card.description} marked YELLOW: wrong order`);
+          newMarks[card.id] = "yellow";
+        }
       });
     }
     // Anything still in stockpile is implicitly wrong timeline
     for (const id of board.stockpile ?? []) newMarks[id] = "red";
 
+    console.log('Final marks:', newMarks);
     setMarks(newMarks);
     setStep("results");
   }
