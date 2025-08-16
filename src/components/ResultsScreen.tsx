@@ -52,10 +52,8 @@ export function ResultsScreen({
                         return (
                             <div key={timeline.id} className="rounded-2xl border bg-slate-50 p-4">
                                 <div className="mb-3 flex items-center justify-between">
-                                    <div className="font-semibold">{timeline.title}</div>
-                                    <div className="text-sm text-slate-600">
-                                        {yearStr(timeline.start)} — {yearStr(timeline.end)}
-                                    </div>
+                                    <div className="font-semibold text-slate-700">{yearStr(timeline.start)}</div>
+                                    <div className="font-semibold text-slate-700">{yearStr(timeline.end)}</div>
                                 </div>
                                 <div className="flex flex-wrap gap-2">
                                     {timelineEvents.map((eventId) => {

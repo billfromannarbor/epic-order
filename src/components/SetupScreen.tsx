@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Settings, TOPICS, PlayerAge, Topic } from "../types/game";
-import { DirectionsCard } from "./DirectionsCard";
 
 interface SetupScreenProps {
     settings: Settings;
@@ -9,21 +8,8 @@ interface SetupScreenProps {
 }
 
 export function SetupScreen({ settings, setSettings, onStart }: SetupScreenProps) {
-    const [showDirections, setShowDirections] = useState(false);
-
     return (
         <div className="grid gap-6">
-            <div className="flex flex-wrap items-center gap-3">
-                <button
-                    onClick={() => setShowDirections((s) => !s)}
-                    className="rounded-full border px-4 py-2 text-sm hover:bg-white"
-                >
-                    {showDirections ? "Hide instructions" : "Show instructions"}
-                </button>
-            </div>
-
-            {showDirections && <DirectionsCard />}
-
             <div className="grid gap-4 rounded-2xl border bg-white p-4 shadow-sm">
                 <div className="grid gap-2">
                     <label className="font-semibold">How many players</label>

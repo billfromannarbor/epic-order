@@ -1,0 +1,69 @@
+EPIC ORDER - GAME INSTRUCTIONS
+
+OVERVIEW
+Epic Order is a historical timeline game where players arrange historical events in chronological order across multiple timelines. Test your knowledge of history while having fun!
+
+GAME SETUP
+1. Choose the number of players (1-4)
+2. Select an age range for appropriate content
+3. Choose the number of timelines (2-4)
+4. Select events per timeline (3-8)
+5. Pick a historical topic:
+   - American History: From Revolution to Modern Era
+   - European History: From French Revolution to EU
+   - Ancient History: From Pyramids to Roman Empire
+6. Press "Start Game" to begin
+
+HOW TO PLAY
+
+SINGLE PLAYER MODE:
+1. Drag historical event cards from the stockpile to any timeline
+2. Arrange events in chronological order within each timeline:
+   - Oldest events go on the LEFT
+   - Newest events go on the RIGHT
+3. Each timeline has a capacity limit - if full, cards will bounce back
+4. When all cards are placed, press "Finish" to see your score
+5. Scoring:
+   - GREEN: Correct timeline AND correct order (2 points)
+   - YELLOW: Correct timeline, wrong order (1 point)
+   - RED: Wrong timeline (0 points)
+
+MULTIPLAYER MODE:
+1. Players take turns placing one event card per turn
+2. Each player has a time limit for their turn
+3. Correct placements score instantly and stay in place
+4. Incorrect placements bounce back to the stockpile
+5. Game ends when all cards are placed
+6. Player with the highest score wins!
+
+GAME MECHANICS
+
+TIMELINES:
+- Each timeline represents a specific historical period
+- Timeline dates are shown on the left and right sides
+- Events must be placed in chronological order within each timeline
+- Each timeline has a maximum capacity
+
+EVENT CARDS:
+- Each card shows a historical event with a short description
+- Hover over cards to see detailed descriptions and exact dates
+- Cards are color-coded after scoring to show accuracy
+
+SCORING SYSTEM:
+- Perfect placement: 2 points (Green)
+- Correct timeline, wrong order: 1 point (Yellow)
+- Wrong timeline: 0 points (Red)
+- Perfect score = 2 points × total number of events
+
+TIPS FOR SUCCESS:
+1. Read the full event descriptions by hovering over cards
+2. Pay attention to the timeline date ranges
+3. Think about historical context and cause-and-effect relationships
+4. In multiplayer, plan your moves quickly but carefully
+5. Use the timeline capacity limits to your advantage
+
+HISTORICAL ACCURACY:
+All events in the game are based on real historical occurrences with accurate dates. The game is designed to be both educational and entertaining, helping players learn about important historical events while having fun!
+
+ENJOY THE GAME!
+Challenge yourself, learn history, and compete with friends in Epic Order!

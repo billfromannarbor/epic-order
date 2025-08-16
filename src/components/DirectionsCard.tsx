@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { InstructionsModal } from "./InstructionsModal";
 
 export function DirectionsCard() {
+    const [showInstructions, setShowInstructions] = useState(false);
+
     return (
-        <div className="rounded-2xl border bg-white p-4 shadow-sm text-sm leading-relaxed">
-            <h3 className="mb-2 text-lg font-bold">Instructions (summary)</h3>
-            <ul className="list-disc pl-6 space-y-1">
-                <li>Choose players, age range, timelines, events per timeline, and a topic. Press <em>Start Game</em>.</li>
-                <li>Drag events from the stockpile to timelines. Oldest goes left; newest right.</li>
-                <li>Each timeline has a capacity. If full, the card bounces back with a message.</li>
-                <li>Single player: press <em>Finish</em> when all cards are placed to score (green/yellow/red).</li>
-                <li>Multiple players: place correctly on your turn to score instantly; wrong drops bounce back.</li>
-            </ul>
-        </div>
+        <>
+            <div className="rounded-2xl border bg-white p-4 shadow-sm">
+                <div className="flex items-center justify-center">
+                    <button
+                        onClick={() => setShowInstructions(true)}
+                        className="px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors"
+                    >
+                        Show Instructions
+                    </button>
+                </div>
+            </div>
+
+            <InstructionsModal
+                isOpen={showInstructions}
+                onClose={() => setShowInstructions(false)}
+            />
+        </>
     );
 }

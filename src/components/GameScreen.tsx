@@ -47,10 +47,8 @@ function DroppableTimeline({
                 }`}
         >
             <div className="mb-2 flex items-center justify-between">
-                <div className="font-semibold">{timeline.title}</div>
-                <div className="text-xs text-slate-600">
-                    {yearStr(timeline.start)} — {yearStr(timeline.end)}
-                </div>
+                <div className="font-semibold text-slate-700">{yearStr(timeline.start)}</div>
+                <div className="font-semibold text-slate-700">{yearStr(timeline.end)}</div>
             </div>
             {children}
             {/* Show capacity info */}

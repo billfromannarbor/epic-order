@@ -7,6 +7,7 @@ import { SetupScreen } from "./SetupScreen";
 import { GameScreen } from "./GameScreen";
 import { ResultsScreen } from "./ResultsScreen";
 import { Toast } from "./Toast";
+import { InstructionsModal } from "./InstructionsModal";
 
 export default function EpicOrderGame() {
   // --- Settings ---
@@ -20,6 +21,9 @@ export default function EpicOrderGame() {
   });
 
   const sensors = useSensors(useSensor(PointerSensor));
+
+  // Instructions modal state
+  const [showInstructions, setShowInstructions] = useState(false);
 
   const {
     step,
@@ -60,7 +64,15 @@ export default function EpicOrderGame() {
       <div className="mx-auto max-w-5xl px-4 py-6">
         <header className="mb-6 flex items-center justify-between">
           <h1 className="text-2xl sm:text-3xl font-bold">Epic Order — Put history in its place</h1>
-          <span className="text-sm opacity-70">Prototype</span>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowInstructions(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors text-sm"
+            >
+              Show Instructions
+            </button>
+            <span className="text-sm opacity-70">Prototype</span>
+          </div>
         </header>
 
         {step === "setup" && (
@@ -103,6 +115,12 @@ export default function EpicOrderGame() {
 
       {/* Global toast */}
       <Toast message={toastMsg} />
+
+      {/* Instructions modal */}
+      <InstructionsModal
+        isOpen={showInstructions}
+        onClose={() => setShowInstructions(false)}
+      />
     </div>
   );
 }
