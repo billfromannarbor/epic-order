@@ -199,14 +199,23 @@ export function GameScreen({
                 <div className="text-sm text-slate-600">
                     {allPlaced ? "All events placed." : "Drag cards to timelines."}
                 </div>
-                {numberOfPlayers === 1 && allPlaced && (
+                <div className="flex gap-3">
+                    {/* Back to setup button for testing */}
                     <button
-                        onClick={onFinish}
-                        className="rounded-2xl bg-emerald-600 px-5 py-2 text-white shadow hover:bg-emerald-700"
+                        onClick={() => window.location.reload()}
+                        className="rounded-2xl bg-slate-500 px-4 py-2 text-white shadow hover:bg-slate-600 text-sm"
                     >
-                        Finish
+                        Back to Setup
                     </button>
-                )}
+                    {numberOfPlayers === 1 && allPlaced && (
+                        <button
+                            onClick={onFinish}
+                            className="rounded-2xl bg-emerald-600 px-5 py-2 text-white shadow hover:bg-emerald-700"
+                        >
+                            Finish
+                        </button>
+                    )}
+                </div>
             </div>
 
             {/* READY overlay */}
