@@ -43,7 +43,7 @@ function DroppableTimeline({
     return (
         <div
             ref={setNodeRef}
-            className={`rounded-2xl border bg-white p-3 shadow-sm transition-colors ${isOver ? 'bg-blue-50 border-blue-300' : ''
+            className={`rounded-2xl border bg-white p-3 shadow-sm transition-colors dnd-area ${isOver ? 'bg-blue-50 border-blue-300' : ''
                 }`}
         >
             <div className="mb-2 flex items-center justify-between">
@@ -70,7 +70,7 @@ function DroppableStockpile({ children }: { children: React.ReactNode }) {
     return (
         <div
             ref={setNodeRef}
-            className={`rounded-2xl border bg-white p-3 shadow-sm transition-colors ${isOver ? 'bg-blue-50 border-blue-300' : ''
+            className={`rounded-2xl border bg-white p-3 shadow-sm transition-colors dnd-area ${isOver ? 'bg-blue-50 border-blue-300' : ''
                 }`}
         >
             <div className="mb-2 text-sm font-semibold">Stockpile</div>
@@ -132,7 +132,7 @@ export function GameScreen({
 
             {/* Timelines */}
             <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd} sensors={sensors}>
-                <div className="grid gap-4">
+                <div className="grid gap-4 dnd-area">
                     {timelines.map((tl) => (
                         <DroppableTimeline
                             key={tl.id}

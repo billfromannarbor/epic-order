@@ -36,7 +36,7 @@ export function SortableEventCard({ card, mark, flash, disabled }: SortableEvent
                     : "";
 
     return (
-        <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="select-none">
+        <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="select-none dnd-area">
             <div
                 title={card.tooltip}
                 className={`w-full rounded-2xl border ${borderByStatus[mark]} bg-white shadow-sm px-3 py-2 text-center text-sm font-semibold hover:shadow-md ${disabled ? "opacity-50" : "cursor-grab active:cursor-grabbing"
