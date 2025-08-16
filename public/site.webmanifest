@@ -1,0 +1,25 @@
+{
+  "name": "Epic Order",
+  "short_name": "EpicOrder",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4B2E1F",
+  "theme_color": "#4B2E1F",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

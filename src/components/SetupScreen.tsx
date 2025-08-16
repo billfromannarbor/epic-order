@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Settings, TOPICS, PlayerAge, Topic } from "../types/game";
 import { DirectionsCard } from "./DirectionsCard";
-import { DemoAnimation } from "./DemoAnimation";
 
 interface SetupScreenProps {
     settings: Settings;
@@ -19,7 +18,7 @@ export function SetupScreen({ settings, setSettings, onStart }: SetupScreenProps
                     onClick={() => setShowDirections((s) => !s)}
                     className="rounded-full border px-4 py-2 text-sm hover:bg-white"
                 >
-                    {showDirections ? "Hide directions" : "Show directions"}
+                    {showDirections ? "Hide instructions" : "Show instructions"}
                 </button>
             </div>
 
@@ -116,9 +115,6 @@ export function SetupScreen({ settings, setSettings, onStart }: SetupScreenProps
                     Start Game
                 </button>
             </div>
-
-            {/* Tiny autoplay animation to visualize gameplay */}
-            <DemoAnimation />
         </div>
     );
 }
